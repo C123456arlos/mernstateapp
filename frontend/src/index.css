@@ -2,7 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
-
+body {
+  background-color: rgb(214, 245, 241);
+}
 
 /* :root {
   --text: #6b6375;
