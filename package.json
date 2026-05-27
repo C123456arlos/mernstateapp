@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "start": "node backend/index.js",
     "install-frontend": "npm install --prefix frontend --legacy-peer-deps",
     "build-frontend": "npm run build --prefix frontend",
     "build": "npm run install-frontend && npm run build-frontend"
