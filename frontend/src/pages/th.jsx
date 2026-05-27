@@ -1,0 +1,977 @@
+// import React, { useEffect, useState } from 'react'
+// import { useNavigate, useLocation } from 'react-router-dom'
+
+// export default function Search() {
+//     const navigate = useNavigate()
+//     const location = useLocation()
+//     const [listings, setListings] = useState([])
+//     // const [sidebarData, setSidebarData] = useState({
+//     //     searchTerm: '',
+//     //     type: 'all',
+//     //     parking: false,
+//     //     furnished: false,
+//     //     offer: false,
+//     //     // sort: 'created_at',
+//     //     sort: 'createdAt',
+//     //     order: 'desc'
+//     // })
+//     const [sidebarData, setSidebarData] = useState({
+//         searchTerm: '',
+//         type: 'all',
+//         parking: false,
+//         furnished: false,
+//         offer: false,
+//         // sort: 'createdAt',
+//         // order: 'desc',
+//         // sort: sortFromUrl || 'createdAt',
+//         // order: orderFromUrl || 'desc',
+//     })
+
+//     const [loading, setLoading] = useState(false)
+//     // useEffect(() => {
+//     //     const searchQuery = urlParams.toString()
+//     //     const urlParams = new URLSearchParams(location.search)
+//     //     const searchTermFromUrl = urlParams.get('searchTerm')
+//     //     const typeFromUrl = urlParams.get('type')
+//     //     const parkingFromUrl = urlParams.get('parking')
+//     //     const furnishedFromUrl = urlParams.get('furnished')
+//     //     const offerFromUrl = urlParams.get('offer')
+//     //     const sortFromUrl = urlParams.get('sort')
+//     //     const orderFromUrl = urlParams.get('order')
+
+//     //     if (
+//     //         searchTermFromUrl ||
+//     //         typeFromUrl ||
+//     //         parkingFromUrl ||
+//     //         furnishedFromUrl ||
+//     //         offerFromUrl ||
+//     //         sortFromUrl ||
+//     //         orderFromUrl
+//     //     ) {
+//     //         // setSidebarData({
+//     //         //     searchTerm: searchTermFromUrl || '',
+//     //         //     type: typeFromUrl || 'all',
+//     //         //     parking: parkingFromUrl || 'true' ? true : false,
+//     //         //     furnished: furnishedFromUrl === 'true' ? true : false,
+//     //         //     offer: offerFromUrl === 'true' ? true : false,
+//     //         //     sort: sortFromUrl || 'created_at',
+//     //         //     order: orderFromUrl || 'desc'
+//     //         // })
+//     //         setSidebarData({
+//     //             searchTerm: searchTermFromUrl || '',
+//     //             type: typeFromUrl || 'all',
+//     //             parking: parkingFromUrl === 'true',
+//     //             furnished: furnishedFromUrl === 'true',
+//     //             offer: offerFromUrl === 'true',
+//     //             sort: sortFromUrl || 'createdAt',
+//     //             order: orderFromUrl || 'desc',
+//     //         })
+//     //     }
+//     // }, [location.search])
+
+
+
+//     console.log(listings)
+//     // console.log(
+//     //     listings.map(item => ({
+//     //         name: item.name,
+//     //         createdAt: item.createdAt,
+//     //         regularPrice: item.regularPrice,
+//     //     }))
+//     // )
+//     useEffect(() => {
+//         const urlParams = new URLSearchParams(location.search)
+//         // const searchQuery = urlParams.toString()
+//         const searchTermFromUrl = urlParams.get('searchTerm')
+//         const typeFromUrl = urlParams.get('type')
+//         const parkingFromUrl = urlParams.get('parking')
+//         const furnishedFromUrl = urlParams.get('furnished')
+//         const offerFromUrl = urlParams.get('offer')
+//         const sortFromUrl = urlParams.get('sort')
+//         const orderFromUrl = urlParams.get('order')
+
+//         // setSidebarData({
+//         //     searchTerm: searchTermFromUrl || '',
+//         //     type: typeFromUrl || 'all',
+//         //     parking: parkingFromUrl === 'true',
+//         //     furnished: furnishedFromUrl === 'true',
+//         //     offer: offerFromUrl === 'true',
+//         //     sort: sortFromUrl || 'createdAt',
+//         //     order: orderFromUrl || 'desc',
+//         // })
+
+//         if (
+//             searchTermFromUrl ||
+//             typeFromUrl ||
+//             parkingFromUrl ||
+//             furnishedFromUrl ||
+//             offerFromUrl ||
+//             sortFromUrl ||
+//             orderFromUrl
+//         ) {
+//             setSidebarData({
+//                 searchTerm: searchTermFromUrl || '',
+//                 type: typeFromUrl || 'all',
+//                 parking: parkingFromUrl === 'true',
+//                 furnished: furnishedFromUrl === 'true',
+//                 offer: offerFromUrl === 'true',
+//                 // sort: sortFromUrl || 'createdAt',
+//                 // order: orderFromUrl || 'desc',
+//                 sort: sortFromUrl || 'createdAt',
+//                 order: orderFromUrl || 'desc',
+//             })
+//         }
+
+//         const fetchListings = async () => {
+//             setLoading(true)
+//             const searchQuery = urlParams.toString()
+//             const res = await fetch(`/api/listing/get?${searchQuery}`)
+//             const data = await res.json()
+//             setListings(data)
+//             setLoading(false)
+//             console.log(searchQuery)
+//         }
+//         fetchListings()
+//     },
+//         [location.search])
+
+
+
+
+
+
+
+//     // const handleChange = (e) => {
+//     //     // if (e.target.id === 'all' || e.target.rent === 'rent' || e.target.id === 'sale') {
+//     //     //     setSidebarData({ ...sidebarData, type: e.target.id })
+//     //     // }
+//     //     if (
+//     //         e.target.id === 'all' ||
+//     //         e.target.id === 'rent' ||
+//     //         e.target.id === 'sale'
+//     //     ) {
+//     //         setSidebarData({ ...sidebarData, type: e.target.id })
+//     //     }
+//     //     if (e.target.id === 'searchTerm') {
+//     //         setSidebarData({ ...sidebarData, searchTerm: e.target.value })
+//     //     }
+//     //     if (e.target.id === 'parking' || e.target.id === 'furnished' || e.target.id === 'offer') {
+//     //         setSidebarData({ ...sidebarData, [e.target.id]: e.target.checked || e.target.checked === 'true' ? true : false })
+//     //     }
+//     //     if (e.target.id === 'sort_order') {
+//     //         const sort = e.target.value.split('_')[0] || 'created_at'
+//     //         const order = e.target.value.split('_')[1] || 'desc'
+//     //         setSidebarData({ ...sidebarData, sort, order })
+//     //     }
+//     // }
+
+
+//     const handleChange = (e) => {
+//         if (
+//             e.target.id === 'all' ||
+//             e.target.id === 'rent' ||
+//             e.target.id === 'sale'
+//         ) {
+//             setSidebarData((prev) => ({
+//                 ...prev,
+//                 type: e.target.id,
+//             }))
+//         }
+
+//         if (e.target.id === 'searchTerm') {
+//             setSidebarData((prev) => ({
+//                 ...prev,
+//                 searchTerm: e.target.value,
+//             }))
+//         }
+
+//         if (
+//             e.target.id === 'parking' ||
+//             e.target.id === 'furnished' ||
+//             e.target.id === 'offer'
+//         ) {
+//             setSidebarData((prev) => ({
+//                 ...prev,
+//                 [e.target.id]: e.target.checked,
+//             }))
+//         }
+
+//         // if (e.target.id === 'sort_order') {
+//         //     const [sort, order] = e.target.value.split('_')
+
+//         //     setSidebarData((prev) => ({
+//         //         ...prev,
+//         //         sort,
+//         //         order,
+//         //     }))
+//         // }
+//         if (e.target.id === 'sort_order') {
+//             const [sort, order] = e.target.value.split('_')
+
+//             setSidebarData((prev) => ({
+//                 ...prev,
+//                 sort,
+//                 order,
+//             }))
+//         }
+//     }
+
+//     // const handleSubmit = (e) => {
+//     //     e.preventDefault()
+//     //     const urlParams = new URLSearchParams()
+//     //     urlParams.set('searchTerm', sidebarData.searchTerm)
+//     //     urlParams.set('type', sidebarData.type)
+//     //     urlParams.set('parking', sidebarData.parking)
+//     //     urlParams.set('furnished', sidebarData.furnished)
+//     //     urlParams.set('offer', sidebarData.offer)
+//     //     urlParams.set('sort', sidebarData.sort)
+//     //     urlParams.set('order', sidebarData.order)
+//     //     const searchQuery = urlParams.toString()
+//     //     // navigate(`/search?${searchQuery}`)
+//     //     // console.log(sidebarData)
+//     //     console.log(sidebarData, 'agsdsdsgdgsfsddfddfdfdfdfdfdfs')
+//     //     navigate(`/search?${searchQuery}`)
+//     // }
+
+
+
+//     const handleSubmit = (e) => {
+//         e.preventDefault()
+//         console.log('FORM SUBMITTED')
+
+//         const urlParams = new URLSearchParams()
+
+//         urlParams.set('searchTerm', sidebarData.searchTerm)
+//         urlParams.set('type', sidebarData.type)
+//         urlParams.set('parking', sidebarData.parking)
+//         urlParams.set('furnished', sidebarData.furnished)
+//         urlParams.set('offer', sidebarData.offer)
+//         urlParams.set('sort', sidebarData.sort)
+//         urlParams.set('order', sidebarData.order)
+
+//         const searchQuery = urlParams.toString()
+
+//         console.log(sidebarData)
+//         console.log(searchQuery)
+//         console.log(sidebarData)
+
+//         navigate(`/search?${searchQuery}`)
+//     }
+
+//     return (
+//         <div className='flex flex-col md:flex-row'>
+//             <div className='p-7 border-b-2 md:boder-r-2 md:min-h-screen'>
+//                 <form className='flex flex-col gap-8' onSubmit={handleSubmit}>
+//                     <div className='flex items-center gap-2'>
+//                         <label className='whitespace-nowrap'>search term</label>
+//                         <input type='text' id='searchTerm' placeholder='search'
+//                             className='border rounded-lg p-3 w-full'
+//                             value={sidebarData.searchTerm} onChange={handleChange}
+//                         >
+//                         </input>
+
+//                     </div>
+//                     <div className='flex gap-2 flex-wrap items-center'>
+//                         <label className='font-semibold'>type:</label>
+//                         <div className='flex gap-2'>
+//                             <input type='checkbox' id='all' className='w-5'
+//                                 onChange={handleChange}
+//                                 checked={sidebarData.type === 'all'}
+//                             >
+//                             </input>
+//                             <span>rent & sale</span>
+//                         </div>
+//                         <div className='flex gap-2'>
+//                             <input type='checkbox' id='rent' className='w-5'
+//                                 onChange={handleChange} checked={sidebarData.type === 'rent'}>
+//                             </input>
+//                             <span>rent</span>
+//                         </div>
+//                         <div className='flex gap-2'>
+//                             <input type='checkbox' id='sale' className='w-5' onChange={handleChange}
+//                                 checked={sidebarData.type === 'sale'}>
+//                             </input>
+//                             <span>sale</span>
+//                         </div>
+//                         <div className='flex gap-2'>
+//                             <input type='checkbox' id='offer' className='w-5' onChange={handleChange}
+//                                 checked={sidebarData.offer}>
+//                             </input>
+//                             <span>offer</span>
+//                         </div>
+//                     </div>
+//                     <div className='flex gap-2 flex-wrap items-center'>
+//                         <label className='font-semibold'>amenities:</label>
+//                         <div className='flex gap-2'>
+//                             <input type='checkbox' id='parking' className='w-5' onChange={handleChange}
+//                                 checked={sidebarData.parking}>
+//                             </input>
+//                             <span>parking</span>
+//                         </div>
+//                         <div className='flex gap-2'>
+//                             <input type='checkbox' id='furnished' className='w-5' onChange={handleChange}
+//                                 checked={sidebarData.furnished}>
+//                             </input>
+//                             <span>furnished</span>
+//                         </div>
+//                     </div>
+//                     <div className='flex items-center gap-2'>
+//                         <label className='font-semibold'>sort:</label>
+//                         {/* <select onChange={handleChange} defaultValue={'created_at_desc'} id='sort_order' className='border rounded-lg p-3'>
+//                             <option value={'regularPrice_desc'}>price high to low</option>
+//                             <option value={'regularPrice_asc'}>price low to high</option>
+//                             <option value={'createdAt_desc'}>latest</option>
+//                             <option value={'createdAt_asc'}>oldest</option>
+//                         </select> */}
+//                         {/* <select
+//                             id='sort_order'
+//                             onChange={handleChange}
+//                             value={`${sidebarData.sort}_${sidebarData.order}`}
+//                             className='border rounded-lg p-3'
+//                         >
+//                             <option value='regularPrice_desc'>price high to low</option>
+//                             <option value='regularPrice_asc'>price low to high</option>
+//                             <option value='createdAt_desc'>latest</option>
+//                             <option value='createdAt_asc'>oldest</option>
+//                         </select> */}
+//                         <select
+//                             id='sort_order'
+//                             onChange={handleChange}
+//                             value={`${sidebarData.sort}_${sidebarData.order}`}
+//                         >
+//                             <option value='regularPrice_desc'>price high to low</option>
+//                             <option value='regularPrice_asc'>price low to high</option>
+//                             <option value='createdAt_desc'>latest</option>
+//                             <option value='createdAt_asc'>oldest</option>
+//                         </select>
+//                     </div>
+//                     <button type='submit' className='bg-slate-700 text-white p-3 rounded-lg border uppercase hover:opacity-95'>search</button>
+//                 </form>
+//             </div>
+//             <div className=''>
+//                 <h1 className='text-3xl font-semibold border-b p-3 text-slate-700 mt-5'>listing results</h1>
+//             </div>
+//         </div>
+//     )
+// }
+
+
+
+
+
+// import { useEffect, useState } from 'react';
+// import { useNavigate } from 'react-router-dom';
+// // import ListingItem from '../components/ListingItem';
+
+// export default function Search() {
+//     const navigate = useNavigate();
+//     const [sidebardata, setSidebardata] = useState({
+//         searchTerm: '',
+//         type: 'all',
+//         parking: false,
+//         furnished: false,
+//         offer: false,
+//         sort: 'created_at',
+//         order: 'desc',
+//     });
+
+//     const [loading, setLoading] = useState(false);
+//     const [listings, setListings] = useState([]);
+//     const [showMore, setShowMore] = useState(false);
+//     console.log(listings)
+//     useEffect(() => {
+//         const urlParams = new URLSearchParams(location.search);
+//         const searchTermFromUrl = urlParams.get('searchTerm');
+//         const typeFromUrl = urlParams.get('type');
+//         const parkingFromUrl = urlParams.get('parking');
+//         const furnishedFromUrl = urlParams.get('furnished');
+//         const offerFromUrl = urlParams.get('offer');
+//         const sortFromUrl = urlParams.get('sort');
+//         const orderFromUrl = urlParams.get('order');
+
+//         if (
+//             searchTermFromUrl ||
+//             typeFromUrl ||
+//             parkingFromUrl ||
+//             furnishedFromUrl ||
+//             offerFromUrl ||
+//             sortFromUrl ||
+//             orderFromUrl
+//         ) {
+//             setSidebardata({
+//                 searchTerm: searchTermFromUrl || '',
+//                 type: typeFromUrl || 'all',
+//                 parking: parkingFromUrl === 'true' ? true : false,
+//                 furnished: furnishedFromUrl === 'true' ? true : false,
+//                 offer: offerFromUrl === 'true' ? true : false,
+//                 sort: sortFromUrl || 'created_at',
+//                 order: orderFromUrl || 'desc',
+//             });
+//         }
+
+//         const fetchListings = async () => {
+//             setLoading(true);
+//             setShowMore(false);
+//             const searchQuery = urlParams.toString();
+//             const res = await fetch(`/api/listing/get?${searchQuery}`);
+//             const data = await res.json();
+//             if (data.length > 8) {
+//                 setShowMore(true);
+//             } else {
+//                 setShowMore(false);
+//             }
+//             setListings(data);
+//             setLoading(false);
+//         };
+
+//         fetchListings();
+//     }, [location.search]);
+
+//     const handleChange = (e) => {
+//         if (
+//             e.target.id === 'all' ||
+//             e.target.id === 'rent' ||
+//             e.target.id === 'sale'
+//         ) {
+//             setSidebardata({ ...sidebardata, type: e.target.id });
+//         }
+
+//         if (e.target.id === 'searchTerm') {
+//             setSidebardata({ ...sidebardata, searchTerm: e.target.value });
+//         }
+
+//         if (
+//             e.target.id === 'parking' ||
+//             e.target.id === 'furnished' ||
+//             e.target.id === 'offer'
+//         ) {
+//             setSidebardata({
+//                 ...sidebardata,
+//                 [e.target.id]:
+//                     e.target.checked || e.target.checked === 'true' ? true : false,
+//             });
+//         }
+
+//         if (e.target.id === 'sort_order') {
+//             const sort = e.target.value.split('_')[0] || 'created_at';
+
+//             const order = e.target.value.split('_')[1] || 'desc';
+
+//             setSidebardata({ ...sidebardata, sort, order });
+//         }
+//     };
+
+//     const handleSubmit = (e) => {
+//         e.preventDefault();
+//         const urlParams = new URLSearchParams();
+//         urlParams.set('searchTerm', sidebardata.searchTerm);
+//         urlParams.set('type', sidebardata.type);
+//         urlParams.set('parking', sidebardata.parking);
+//         urlParams.set('furnished', sidebardata.furnished);
+//         urlParams.set('offer', sidebardata.offer);
+//         urlParams.set('sort', sidebardata.sort);
+//         urlParams.set('order', sidebardata.order);
+//         const searchQuery = urlParams.toString();
+//         navigate(`/search?${searchQuery}`);
+//     };
+
+//     const onShowMoreClick = async () => {
+//         const numberOfListings = listings.length;
+//         const startIndex = numberOfListings;
+//         const urlParams = new URLSearchParams(location.search);
+//         urlParams.set('startIndex', startIndex);
+//         const searchQuery = urlParams.toString();
+//         const res = await fetch(`/api/listing/get?${searchQuery}`);
+//         const data = await res.json();
+//         if (data.length < 9) {
+//             setShowMore(false);
+//         }
+//         setListings([...listings, ...data]);
+//     };
+//     return (
+//         <div className='flex flex-col md:flex-row'>
+//             <div className='p-7  border-b-2 md:border-r-2 md:min-h-screen'>
+//                 <form onSubmit={handleSubmit} className='flex flex-col gap-8'>
+//                     <div className='flex items-center gap-2'>
+//                         <label className='whitespace-nowrap font-semibold'>
+//                             Search Term:
+//                         </label>
+//                         <input
+//                             type='text'
+//                             id='searchTerm'
+//                             placeholder='Search...'
+//                             className='border rounded-lg p-3 w-full'
+//                             value={sidebardata.searchTerm}
+//                             onChange={handleChange}
+//                         />
+//                     </div>
+//                     <div className='flex gap-2 flex-wrap items-center'>
+//                         <label className='font-semibold'>Type:</label>
+//                         <div className='flex gap-2'>
+//                             <input
+//                                 type='checkbox'
+//                                 id='all'
+//                                 className='w-5'
+//                                 onChange={handleChange}
+//                                 checked={sidebardata.type === 'all'}
+//                             />
+//                             <span>Rent & Sale</span>
+//                         </div>
+//                         <div className='flex gap-2'>
+//                             <input
+//                                 type='checkbox'
+//                                 id='rent'
+//                                 className='w-5'
+//                                 onChange={handleChange}
+//                                 checked={sidebardata.type === 'rent'}
+//                             />
+//                             <span>Rent</span>
+//                         </div>
+//                         <div className='flex gap-2'>
+//                             <input
+//                                 type='checkbox'
+//                                 id='sale'
+//                                 className='w-5'
+//                                 onChange={handleChange}
+//                                 checked={sidebardata.type === 'sale'}
+//                             />
+//                             <span>Sale</span>
+//                         </div>
+//                         <div className='flex gap-2'>
+//                             <input
+//                                 type='checkbox'
+//                                 id='offer'
+//                                 className='w-5'
+//                                 onChange={handleChange}
+//                                 checked={sidebardata.offer}
+//                             />
+//                             <span>Offer</span>
+//                         </div>
+//                     </div>
+//                     <div className='flex gap-2 flex-wrap items-center'>
+//                         <label className='font-semibold'>Amenities:</label>
+//                         <div className='flex gap-2'>
+//                             <input
+//                                 type='checkbox'
+//                                 id='parking'
+//                                 className='w-5'
+//                                 onChange={handleChange}
+//                                 checked={sidebardata.parking}
+//                             />
+//                             <span>Parking</span>
+//                         </div>
+//                         <div className='flex gap-2'>
+//                             <input
+//                                 type='checkbox'
+//                                 id='furnished'
+//                                 className='w-5'
+//                                 onChange={handleChange}
+//                                 checked={sidebardata.furnished}
+//                             />
+//                             <span>Furnished</span>
+//                         </div>
+//                     </div>
+//                     <div className='flex items-center gap-2'>
+//                         <label className='font-semibold'>Sort:</label>
+//                         <select
+//                             onChange={handleChange}
+//                             defaultValue={'created_at_desc'}
+//                             id='sort_order'
+//                             className='border rounded-lg p-3'
+//                         >
+//                             <option value='regularPrice_desc'>Price high to low</option>
+//                             <option value='regularPrice_asc'>Price low to hight</option>
+//                             <option value='createdAt_desc'>Latest</option>
+//                             <option value='createdAt_asc'>Oldest</option>
+//                         </select>
+//                     </div>
+//                     <button className='bg-slate-700 text-white p-3 rounded-lg uppercase hover:opacity-95'>
+//                         Search
+//                     </button>
+//                 </form>
+//             </div>
+//             <div className='flex-1'>
+//                 <h1 className='text-3xl font-semibold border-b p-3 text-slate-700 mt-5'>
+//                     Listing results:
+//                 </h1>
+//                 <div className='p-7 flex flex-wrap gap-4'>
+//                     {!loading && listings.length === 0 && (
+//                         <p className='text-xl text-slate-700'>No listing found!</p>
+//                     )}
+//                     {loading && (
+//                         <p className='text-xl text-slate-700 text-center w-full'>
+//                             Loading...
+//                         </p>
+//                     )}
+
+//                     {/* {!loading && */}
+//                     {/* listings && */}
+//                     {/* listings.map((listing) => ( */}
+//                     {/* <ListingItem key={listing._id} listing={listing} /> */}
+//                     {/* ) */}
+//                     {/* ) */}
+//                     {/* } */}
+
+//                     {showMore && (
+//                         <button
+//                             onClick={onShowMoreClick}
+//                             className='text-green-700 hover:underline p-7 text-center w-full'
+//                         >
+//                             Show more
+//                         </button>
+//                     )}
+//                 </div>
+//             </div>
+//         </div>
+//     );
+// }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// import React, { useEffect, useState } from 'react'
+// import { useNavigate, useLocation } from 'react-router-dom'
+
+// export default function Search() {
+//     const navigate = useNavigate()
+//     const location = useLocation()
+
+//     const [listings, setListings] = useState([])
+//     const [loading, setLoading] = useState(false)
+//     console.log(listings)
+//     const [sidebarData, setSidebarData] = useState({
+//         searchTerm: '',
+//         type: 'all',
+//         parking: false,
+//         furnished: false,
+//         offer: false,
+//         sort: 'createdAt',
+//         order: 'desc',
+//     })
+
+//     useEffect(() => {
+//         const urlParams = new URLSearchParams(location.search)
+
+//         const searchTermFromUrl = urlParams.get('searchTerm')
+//         const typeFromUrl = urlParams.get('type')
+//         const parkingFromUrl = urlParams.get('parking')
+//         const furnishedFromUrl = urlParams.get('furnished')
+//         const offerFromUrl = urlParams.get('offer')
+//         const sortFromUrl = urlParams.get('sort')
+//         const orderFromUrl = urlParams.get('order')
+
+//         setSidebarData({
+//             searchTerm: searchTermFromUrl || '',
+//             type: typeFromUrl || 'all',
+//             parking: parkingFromUrl === 'true',
+//             furnished: furnishedFromUrl === 'true',
+//             offer: offerFromUrl === 'true',
+//             sort: sortFromUrl || 'createdAt',
+//             order: orderFromUrl || 'desc'
+//         })
+
+//         const fetchListings = async () => {
+//             try {
+//                 setLoading(true)
+
+//                 const searchQuery = urlParams.toString()
+
+//                 const res = await fetch(
+//                     `/api/listing/get?${searchQuery}`
+//                 )
+
+//                 const data = await res.json()
+
+//                 setListings(data)
+
+//             } catch (error) {
+//                 console.log(error)
+//             } finally {
+//                 setLoading(false)
+//             }
+//         }
+
+//         fetchListings()
+
+//     }, [location.search])
+
+//     const handleChange = (e) => {
+
+//         // type
+//         if (
+//             e.target.id === 'all' ||
+//             e.target.id === 'rent' ||
+//             e.target.id === 'sale'
+//         ) {
+//             setSidebarData((prev) => ({
+//                 ...prev,
+//                 type: e.target.id,
+//             }))
+//         }
+
+//         // search term
+//         if (e.target.id === 'searchTerm') {
+//             setSidebarData((prev) => ({
+//                 ...prev,
+//                 searchTerm: e.target.value,
+//             }))
+//         }
+
+//         // checkboxes
+//         if (
+//             e.target.id === 'parking' ||
+//             e.target.id === 'furnished' ||
+//             e.target.id === 'offer'
+//         ) {
+//             setSidebarData((prev) => ({
+//                 ...prev,
+//                 [e.target.id]: e.target.checked,
+//             }))
+//         }
+
+//         // sort
+
+//         if (e.target.id === 'sort_order') {
+
+//             const [sort, order] =
+//                 e.target.value.split('_')
+
+//             setSidebarData((prev) => ({
+//                 ...prev,
+//                 sort: sort || 'createdAt',
+//                 order: order || 'desc',
+//             }))
+//         }
+//     }
+
+//     const handleSubmit = (e) => {
+//         e.preventDefault()
+
+//         const urlParams = new URLSearchParams()
+
+//         urlParams.set('searchTerm', sidebarData.searchTerm)
+//         urlParams.set('type', sidebarData.type)
+//         urlParams.set('parking', sidebarData.parking)
+//         urlParams.set('furnished', sidebarData.furnished)
+//         urlParams.set('offer', sidebarData.offer)
+//         urlParams.set('sort', sidebarData.sort)
+//         urlParams.set('order', sidebarData.order)
+
+//         const searchQuery = urlParams.toString()
+
+//         navigate(`/search?${searchQuery}`)
+//     }
+
+//     return (
+//         <div className='flex flex-col md:flex-row'>
+
+//             {/* Sidebar */}
+//             <div className='p-7 border-b-2 md:border-r-2 md:min-h-screen'>
+
+//                 <form
+//                     className='flex flex-col gap-8'
+//                     onSubmit={handleSubmit}
+//                 >
+
+//                     {/* Search */}
+//                     <div className='flex items-center gap-2'>
+//                         <label className='whitespace-nowrap'>
+//                             Search term:
+//                         </label>
+
+//                         <input
+//                             type='text'
+//                             id='searchTerm'
+//                             placeholder='Search...'
+//                             className='border rounded-lg p-3 w-full'
+//                             value={sidebarData.searchTerm}
+//                             onChange={handleChange}
+//                         />
+//                     </div>
+
+//                     {/* Type */}
+//                     <div className='flex gap-2 flex-wrap items-center'>
+//                         <label className='font-semibold'>
+//                             Type:
+//                         </label>
+
+//                         <div className='flex gap-2'>
+//                             <input
+//                                 type='checkbox'
+//                                 id='all'
+//                                 className='w-5'
+//                                 onChange={handleChange}
+//                                 checked={sidebarData.type === 'all'}
+//                             />
+//                             <span>Rent & Sale</span>
+//                         </div>
+
+//                         <div className='flex gap-2'>
+//                             <input
+//                                 type='checkbox'
+//                                 id='rent'
+//                                 className='w-5'
+//                                 onChange={handleChange}
+//                                 checked={sidebarData.type === 'rent'}
+//                             />
+//                             <span>Rent</span>
+//                         </div>
+
+//                         <div className='flex gap-2'>
+//                             <input
+//                                 type='checkbox'
+//                                 id='sale'
+//                                 className='w-5'
+//                                 onChange={handleChange}
+//                                 checked={sidebarData.type === 'sale'}
+//                             />
+//                             <span>Sale</span>
+//                         </div>
+
+//                         <div className='flex gap-2'>
+//                             <input
+//                                 type='checkbox'
+//                                 id='offer'
+//                                 className='w-5'
+//                                 onChange={handleChange}
+//                                 checked={sidebarData.offer}
+//                             />
+//                             <span>Offer</span>
+//                         </div>
+//                     </div>
+
+//                     {/* Amenities */}
+//                     <div className='flex gap-2 flex-wrap items-center'>
+//                         <label className='font-semibold'>
+//                             Amenities:
+//                         </label>
+
+//                         <div className='flex gap-2'>
+//                             <input
+//                                 type='checkbox'
+//                                 id='parking'
+//                                 className='w-5'
+//                                 onChange={handleChange}
+//                                 checked={sidebarData.parking}
+//                             />
+//                             <span>Parking</span>
+//                         </div>
+
+//                         <div className='flex gap-2'>
+//                             <input
+//                                 type='checkbox'
+//                                 id='furnished'
+//                                 className='w-5'
+//                                 onChange={handleChange}
+//                                 checked={sidebarData.furnished}
+//                             />
+//                             <span>Furnished</span>
+//                         </div>
+//                     </div>
+
+//                     {/* Sort */}
+//                     <div className='flex items-center gap-2'>
+//                         <label className='font-semibold'>
+//                             Sort:
+//                         </label>
+
+//                         <select
+//                             id='sort_order'
+//                             onChange={handleChange}
+//                             value={`${sidebarData.sort}_${sidebarData.order}`}
+//                             className='border rounded-lg p-3'
+//                         >
+//                             <option value='regularPrice_desc'>
+//                                 Price high to low
+//                             </option>
+
+//                             <option value='regularPrice_asc'>
+//                                 Price low to high
+//                             </option>
+
+//                             <option value='createdAt_desc'>
+//                                 Latest
+//                             </option>
+
+//                             <option value='createdAt_asc'>
+//                                 Oldest
+//                             </option>
+//                         </select>
+//                     </div>
+
+//                     <button
+//                         type='submit'
+//                         className='bg-slate-700 text-white p-3 rounded-lg uppercase hover:opacity-95'
+//                     >
+//                         Search
+//                     </button>
+
+//                 </form>
+//             </div>
+
+//             {/* Results */}
+//             <div className='flex-1'>
+
+//                 <h1 className='text-3xl font-semibold border-b p-3 text-slate-700 mt-5'>
+//                     Listing Results
+//                 </h1>
+
+//                 <div className='p-7'>
+
+//                     {loading && (
+//                         <p className='text-xl text-slate-700'>
+//                             Loading...
+//                         </p>
+//                     )}
+
+//                     {!loading && listings.length === 0 && (
+//                         <p className='text-xl text-slate-700'>
+//                             No listings found!
+//                         </p>
+//                     )}
+
+//                     {!loading && listings.length > 0 && (
+//                         <div className='flex flex-col gap-4'>
+
+//                             {listings.map((listing) => (
+//                                 <div
+//                                     key={listing._id}
+//                                     className='border p-4 rounded-lg'
+//                                 >
+//                                     <h2 className='font-semibold text-lg'>
+//                                         {listing.name}
+//                                     </h2>
+
+//                                     <p>
+//                                         ${listing.regularPrice}
+//                                     </p>
+
+//                                     <p className='text-sm text-gray-500'>
+//                                         {new Date(
+//                                             listing.createdAt
+//                                         ).toLocaleString()}
+//                                     </p>
+//                                 </div>
+//                             ))}
+
+//                         </div>
+//                     )}
+
+//                 </div>
+//             </div>
+//         </div>
+//     )
+// }
